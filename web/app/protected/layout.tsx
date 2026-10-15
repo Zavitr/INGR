@@ -44,13 +44,18 @@ export default function ProtectedLayout({
         </div>
 
         {/* Dashboard Footer */}
-        <footer className="w-full flex items-center justify-center border-t border-border/40 mx-auto text-center text-xs gap-8 py-8 text-muted-foreground">
-          <p>&copy; 2026 INGR Platform</p>
-          <div className="flex gap-4">
-            <Link href="#" className="hover:text-foreground transition-colors">Support</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">Documentation</Link>
+        <footer className="w-full flex flex-col items-center justify-center border-t border-border/40 mx-auto text-center text-xs gap-3 py-8 text-muted-foreground">
+          <div className="flex items-center gap-8">
+            <p>&copy; 2026 INGR Platform</p>
+            <div className="flex gap-4">
+              <Link href="#" className="hover:text-foreground transition-colors">Support</Link>
+              <Link href="#" className="hover:text-foreground transition-colors">Documentation</Link>
+            </div>
+            <ThemeSwitcher />
           </div>
-          <ThemeSwitcher />
+          <p className="text-[11px] text-muted-foreground/60 max-w-2xl px-4">
+            Third-party trademarks and logos belong to their respective owners. Integrations are independent connectors and do not imply endorsement or affiliation.
+          </p>
         </footer>
       </div>
       <CrispChat />

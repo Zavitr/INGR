@@ -279,20 +279,33 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="w-full border-t border-border/50 py-12 bg-muted/20">
-        <div className="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex gap-2 items-center font-bold text-lg">
-            <div className="w-6 h-6 rounded-md bg-primary/20 flex items-center justify-center text-primary">
-              <Layers size={14} />
+        <div className="max-w-7xl mx-auto px-5 flex flex-col gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex gap-2 items-center font-bold text-lg">
+              <div className="w-6 h-6 rounded-md bg-primary/20 flex items-center justify-center text-primary">
+                <Layers size={14} />
+              </div>
+              INGR
             </div>
-            INGR
+            <div className="text-sm text-muted-foreground flex gap-6">
+              <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
+              <Link href="#" className="hover:text-foreground transition-colors">Terms</Link>
+              <Link href="#" className="hover:text-foreground transition-colors">Contact</Link>
+            </div>
+            <div className="flex items-center gap-4">
+              <ThemeSwitcher />
+            </div>
           </div>
-          <div className="text-sm text-muted-foreground flex gap-6">
-            <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">Contact</Link>
-          </div>
-          <div className="flex items-center gap-4">
-            <ThemeSwitcher />
+          <div className="border-t border-border/40 pt-6 text-[11px] text-muted-foreground/70 leading-relaxed text-center md:text-left space-y-1">
+            <p>
+              All product names, logos, brands, and registered trademarks are property of their respective owners. 
+              All company, product, and service names used on this site are for identification purposes only. 
+              Use of these names, logos, and brands does not imply endorsement or affiliation.
+            </p>
+            <p>
+              Gaming integrations are unofficial community connectors. 
+              Supercell integrations adhere to Supercell&apos;s Fan Content Policy (supercell.com/fan-content-policy).
+            </p>
           </div>
         </div>
       </footer>
