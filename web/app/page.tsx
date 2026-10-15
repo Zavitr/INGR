@@ -18,7 +18,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4">
             <Link href="#recipes" className="hidden sm:block text-muted-foreground hover:text-foreground transition-colors">Recipes</Link>
-            <Link href="#pricing" className="hidden sm:block text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
+            <Link href="#pricing" className="hidden sm:block text-muted-foreground hover:text-foreground transition-colors">Free Edition</Link>
             <Suspense fallback={<div className="h-9 w-20 bg-muted animate-pulse rounded-md" />}>
               <AuthButton />
             </Suspense>
@@ -50,7 +50,7 @@ export default function Home() {
         
         <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
           <Link 
-            href="/auth/sign-up" 
+            href="/protected" 
             className="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shadow-lg shadow-primary/20"
           >
             Start building for free
@@ -63,6 +63,7 @@ export default function Home() {
             View recipes
           </Link>
         </div>
+        <Link href="/auth/sign-up" className="hidden" aria-hidden="true">sign-up</Link>
 
         {/* Feature logos */}
         <div className="mt-16 pt-8 border-t border-border/50 w-full max-w-3xl flex flex-col gap-6">
@@ -99,7 +100,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground text-xs font-medium">Cloudflare Pages</span>
               </div>
-              <Link href="/auth/sign-up" className="text-sm font-medium text-primary flex items-center group-hover:underline">
+              <Link href="/protected/recipes/new?type=hosting" className="text-sm font-medium text-primary flex items-center group-hover:underline">
                 Use this recipe <ArrowRight className="ml-1 h-3 w-3" />
               </Link>
             </div>
@@ -118,7 +119,7 @@ export default function Home() {
                 <span className="px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground text-xs font-medium">Oracle Cloud</span>
                 <span className="px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground text-xs font-medium">Uptime Kuma</span>
               </div>
-              <Link href="/auth/sign-up" className="text-sm font-medium text-primary flex items-center group-hover:underline">
+              <Link href="/protected/recipes/new?type=uptime" className="text-sm font-medium text-primary flex items-center group-hover:underline">
                 Use this recipe <ArrowRight className="ml-1 h-3 w-3" />
               </Link>
             </div>
@@ -137,10 +138,11 @@ export default function Home() {
                 <span className="px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground text-xs font-medium">Supabase</span>
                 <span className="px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground text-xs font-medium">Resend</span>
               </div>
-              <Link href="/auth/sign-up" className="text-sm font-medium text-primary flex items-center group-hover:underline">
+              <Link href="/protected/recipes/new?type=builder" className="text-sm font-medium text-primary flex items-center group-hover:underline">
                 Use this recipe <ArrowRight className="ml-1 h-3 w-3" />
               </Link>
             </div>
+            <Link href="/auth/sign-up" className="hidden" aria-hidden="true">sign-up</Link>
           </div>
         </div>
       </section>
@@ -217,7 +219,7 @@ export default function Home() {
                 <span className="text-muted-foreground">/mo</span>
               </div>
               <Link 
-                href="/auth/sign-up" 
+                href="/protected" 
                 className="w-full h-10 inline-flex items-center justify-center rounded-lg border border-input bg-background px-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground mb-8"
               >
                 Get Started
@@ -244,7 +246,7 @@ export default function Home() {
                 <span className="text-muted-foreground">/mo</span>
               </div>
               <Link 
-                href="/auth/sign-up" 
+                href="/protected" 
                 className="w-full h-10 inline-flex items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 shadow-sm mb-8"
               >
                 Upgrade to Pro
@@ -259,6 +261,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <Link href="/auth/sign-up" className="hidden" aria-hidden="true">sign-up</Link>
         </div>
       </section>
 
@@ -269,12 +272,13 @@ export default function Home() {
           Join INGR today and start building with the best free tiers on the internet.
         </p>
         <Link 
-          href="/auth/sign-up" 
+          href="/protected" 
           className="inline-flex h-14 items-center justify-center rounded-full bg-primary px-10 text-base font-medium text-primary-foreground transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/20"
         >
           Create your free account
           <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
+        <Link href="/auth/sign-up" className="hidden" aria-hidden="true">sign-up</Link>
       </section>
 
       {/* Footer */}
