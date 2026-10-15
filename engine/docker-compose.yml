@@ -1,0 +1,44 @@
+services:
+  activepieces:
+    image: activepieces/activepieces:0.82.0
+    container_name: ingr_activepieces
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - activepieces_data:/root/.activepieces
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: ingr_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: activepieces
+      POSTGRES_USER: activepieces
+      POSTGRES_PASSWORD: ingr_activepieces_db_pass_2026
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U activepieces -d activepieces"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: ingr_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+volumes:
+  activepieces_data:
+  postgres_data:
+  redis_data:
