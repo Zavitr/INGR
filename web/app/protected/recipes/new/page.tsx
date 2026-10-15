@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { HostingWizard } from "@/components/recipes/hosting-wizard";
 import { UptimeWizard } from "@/components/recipes/uptime-wizard";
+import { FlowStudio } from "@/components/recipes/flow-builder/flow-studio";
 
 interface RecipeTemplate {
   id: string;
@@ -192,6 +193,11 @@ export default async function NewRecipePage({
     return <UptimeWizard />;
   }
 
+  // Render interactive flow studio when type=builder or type=flow
+  if (type === "builder" || type === "flow") {
+    return <FlowStudio />;
+  }
+
   return (
     <div className="w-full max-w-6xl p-5 md:p-10 flex flex-col gap-10 mx-auto">
       {/* Header and Back Link */}
@@ -216,6 +222,29 @@ export default async function NewRecipePage({
         </div>
       </div>
 
+      {/* Interactive Studio Banner */}
+      <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm">
+        <div className="space-y-2 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>New · 4,749+ Universal Connectors</span>
+          </div>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">
+            Interactive Recipe Flow Studio
+          </h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Build cross-service workflows with visual Canvas and Linear modes. Seamlessly connect Gaming, Creative 3D, Slack, Discord, Blender, GitHub, Supabase, and thousands more with instant simulation.
+          </p>
+        </div>
+        <Link
+          href="/protected/recipes/new?type=builder"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shrink-0"
+        >
+          <span>Open Flow Studio</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+
       {/* Starter Recipe Templates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {TEMPLATES.map((template) => {
@@ -225,6 +254,8 @@ export default async function NewRecipePage({
               ? "/protected/recipes/new?type=hosting"
               : template.id === "uptime"
               ? "/protected/recipes/new?type=uptime"
+              : template.id === "custom"
+              ? "/protected/recipes/new?type=builder"
               : `/protected/services/connect?recipe=${template.id}`;
 
           return (

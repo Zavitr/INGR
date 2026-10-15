@@ -33,6 +33,7 @@ export interface UpdateRecipeInput {
   name?: string;
   status?: RecipeStatus;
   liveUrl?: string | null;
+  services?: string[];
   metadata?: Record<string, unknown>;
   isPublic?: boolean;
 }

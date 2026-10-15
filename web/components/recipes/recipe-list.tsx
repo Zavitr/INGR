@@ -66,6 +66,8 @@ export function RecipeList({
       const deactUrl =
         deactivatingRecipe.type === "uptime"
           ? `/api/recipes/uptime/${deactivatingRecipe.id}/deactivate`
+          : deactivatingRecipe.type === "flow"
+          ? `/api/recipes/flow/${deactivatingRecipe.id}/deactivate`
           : `/api/recipes/hosting/${deactivatingRecipe.id}/deactivate`;
 
       const res = await fetch(deactUrl, {
@@ -255,7 +257,13 @@ export function RecipeList({
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                      {recipe.type === "uptime" ? <MonitorPlay size={20} /> : <Globe size={20} />}
+                      {recipe.type === "uptime" ? (
+                        <MonitorPlay size={20} />
+                      ) : recipe.type === "flow" ? (
+                        <Sparkles size={20} />
+                      ) : (
+                        <Globe size={20} />
+                      )}
                     </div>
                     <div>
                       <h3 className="font-bold text-base leading-tight truncate">
@@ -328,19 +336,29 @@ export function RecipeList({
 
               {/* Actions Footer */}
               <div className="flex items-center gap-2 pt-3 border-t border-border/50">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setUpdatingRecipe(recipe);
-                    setUpdateFiles([]);
-                    setUpdateError(null);
-                    setUpdateSuccess(false);
-                  }}
-                  className="flex-1 inline-flex h-9 items-center justify-center rounded-lg border border-input bg-background px-3 text-xs font-medium hover:bg-accent transition-colors shadow-sm"
-                >
-                  <RefreshCw className="mr-1.5 h-3.5 w-3.5 text-muted-foreground" />
-                  Update Website
-                </button>
+                {recipe.type === "flow" ? (
+                  <Link
+                    href={`/protected/recipes/new?type=builder&id=${recipe.id}`}
+                    className="flex-1 inline-flex h-9 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary px-3 text-xs font-medium hover:bg-primary/20 transition-colors shadow-sm"
+                  >
+                    <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+                    Edit Flow
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setUpdatingRecipe(recipe);
+                      setUpdateFiles([]);
+                      setUpdateError(null);
+                      setUpdateSuccess(false);
+                    }}
+                    className="flex-1 inline-flex h-9 items-center justify-center rounded-lg border border-input bg-background px-3 text-xs font-medium hover:bg-accent transition-colors shadow-sm"
+                  >
+                    <RefreshCw className="mr-1.5 h-3.5 w-3.5 text-muted-foreground" />
+                    Update Website
+                  </button>
+                )}
 
                 {isActive ? (
                   <button

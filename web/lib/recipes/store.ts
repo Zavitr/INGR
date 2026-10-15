@@ -210,6 +210,7 @@ export class RecipeStore {
       name: updates.name !== undefined ? updates.name : existing.name,
       status: updates.status !== undefined ? updates.status : existing.status,
       liveUrl: updates.liveUrl !== undefined ? updates.liveUrl : existing.liveUrl,
+      services: updates.services !== undefined ? updates.services : existing.services,
       isPublic: updates.isPublic !== undefined ? updates.isPublic : existing.isPublic,
       metadata:
         updates.metadata !== undefined
@@ -227,6 +228,7 @@ export class RecipeStore {
         if (updates.name !== undefined) updateData.name = updates.name;
         if (updates.status !== undefined) updateData.status = updates.status;
         if (updates.liveUrl !== undefined) updateData.live_url = updates.liveUrl;
+        if (updates.services !== undefined) updateData.services = updates.services;
         if (updates.metadata !== undefined) updateData.metadata = updatedRecipe.metadata;
         if (updates.isPublic !== undefined) updateData.is_public = updates.isPublic;
 
