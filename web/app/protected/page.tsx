@@ -128,7 +128,7 @@ export default async function ProtectedPage() {
             
             <div className="p-4 bg-muted/30 text-center">
               <Link href="/protected/services" className="text-sm font-medium text-primary hover:underline inline-flex items-center">
-                View all 12 supported services <ArrowRight className="ml-1 h-3 w-3" />
+                View all 4,760+ connectors & services <ArrowRight className="ml-1 h-3 w-3" />
               </Link>
             </div>
           </div>

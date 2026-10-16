@@ -679,6 +679,13 @@ export function getTotalConnectorCount(): number {
 }
 
 /**
+ * Get all loaded universal connectors
+ */
+export function getAllUniversalConnectors(): UniversalConnector[] {
+  return connectorRegistry.search("", { limit: 10000 });
+}
+
+/**
  * Interpolates parameter strings containing {{step_id.key}} using execution context
  */
 export function interpolateString(

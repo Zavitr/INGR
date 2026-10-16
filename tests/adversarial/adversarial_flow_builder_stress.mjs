@@ -84,6 +84,7 @@ async function runFlowBuilderTests() {
 
   // Test 2: Sub-5ms Search
   await test('02. Search performs sub-5ms across all 4,749+ connectors', async () => {
+    searchConnectors('warmup'); // warm up JIT
     const queries = ['clash', 'blender', 'slack', 'discord', 'minecraft', 'github', 'supabase', 'chess', 'youtube', 'stripe'];
     for (const q of queries) {
       const t0 = performance.now();

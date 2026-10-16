@@ -18,6 +18,8 @@ import { FlowCanvas } from "./flow-canvas";
 import { FlowLinear } from "./flow-linear";
 import { ConnectorSpotlight } from "./connector-spotlight";
 import { SimulationInspector } from "./simulation-inspector";
+import { MagicPromptBar } from "./magic-prompt-bar";
+import type { GeneratedFlowRecipe } from "@/lib/recipes/flow-prompt-engine";
 import { getTotalConnectorCount } from "@/lib/recipes/universal-connectors";
 import type {
   FlowNode,
@@ -367,6 +369,15 @@ export function FlowStudio({ initialRecipeId, initialName }: FlowStudioProps) {
     setConnections((prev) => prev.filter((c) => c.id !== connId));
   };
 
+  const handleFlowGenerated = (flow: GeneratedFlowRecipe) => {
+    setRecipeName(flow.title);
+    setNodes(flow.nodes);
+    setConnections(flow.connections);
+    if (flow.nodes[0]) {
+      setSelectedNodeId(flow.nodes[0].id);
+    }
+  };
+
   return (
     <div className="w-full h-screen flex flex-col overflow-hidden bg-background">
       {/* Top Navigation Bar */}
@@ -508,6 +519,13 @@ export function FlowStudio({ initialRecipeId, initialName }: FlowStudioProps) {
 
       {/* Main Workspace: Canvas or Linear */}
       <main className="flex-1 relative overflow-hidden flex">
+        {/* Floating Magic Prompt Bar */}
+        <div className="absolute top-4 left-4 right-4 z-20 pointer-events-none flex justify-center">
+          <div className="pointer-events-auto w-full max-w-3xl">
+            <MagicPromptBar onFlowGenerated={handleFlowGenerated} />
+          </div>
+        </div>
+
         {viewMode === "canvas" ? (
           <FlowCanvas
             nodes={nodes}
